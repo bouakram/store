@@ -40,18 +40,17 @@ function SignUpForm() {
             if (err.code === 'auth/email-already-in-use') {
                 alert('can not create user already in use')
             }
-            console.log(err)
         }
     }
     return (
-        <div className='sign-up-container'>
-            <h2>sign-up-form</h2>
-            <form>
-                <FormInput label={"Display Name"} inputOptions={{ type: 'text', name: 'displayName', value: displayName, onChange: handleChange, required: true }} />
-                <FormInput label={'Email'} inputOptions={{ type: 'email', name: 'email', value: email, onChange: handleChange, required: true }} />
-                <FormInput label={"password"} inputOptions={{ type: 'password', name: 'password', value: password, onChange: handleChange, handleChange, required: true }} />
-                <FormInput label={'Confirm Password'} inputOptions={{ type: 'password', name: 'confirmPassword', value: confirmPassword, onChange: handleChange, required: true }} />
-                <Button type='submit' onSubmit={handleSubmit}>sign up</Button>
+        <div className='signup-container'>
+            <h2>Crate a new account</h2>
+            <form onSubmit={handleSubmit}>
+                <FormInput label={"Display Name"} type='text' name='displayName' value={displayName} onChange={handleChange} required />
+                <FormInput label={'Email'} type='email' name='email' value={email} onChange={handleChange} required />
+                <FormInput label={"password"} type='password' name='password' value={password} onChange={handleChange} required />
+                <FormInput label={'Confirm Password'} type='password' name='confirmPassword' value={confirmPassword} onChange={handleChange} required />
+                <Button type='submit'>sign up</Button>
             </form>
         </div>
     )
