@@ -1,5 +1,7 @@
 import React from 'react'
 import { createUserDocumentFromAuth, signInWithGooglePopup } from '../../utils/firebase.utils'
+import SignUpForm from '../../components/sign-up-form/sign-up-form.component'
+import Button from '../../components/button/button.components'
 
 function SignIn() {
     const logGoogleUser = async () => {
@@ -9,9 +11,10 @@ function SignIn() {
     return (
         <div>
             SignIn
-            <button onClick={logGoogleUser}>
-                sign-in with google account
-            </button>
+            <Button button_type={'google'} onClick={logGoogleUser}>
+                sign in with google
+            </Button>
+            <SignUpForm />
         </div>
     )
 }
