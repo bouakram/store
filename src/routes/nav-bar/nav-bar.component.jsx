@@ -1,9 +1,16 @@
-import React, { Fragment } from 'react'
+import './nav-bar.styles.scss'
+import React, { Fragment, useContext } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { ReactComponent as ShopLogo } from '../../assets/retail-shop-icon.svg'
-import './nav-bar.styles.scss'
+import { UserContext } from '../../contexts/user.context'
+import { signOutUser } from '../../utils/firebase/firebase.utils'
+import CardIcon from '../../components/card-icon/card-icon.component'
+import CardDropDown from '../../components/card-drop-down/card-drop-down.component'
+import { CardDisplayContext } from '../../contexts/card-display.context'
 
 function NavBar() {
+    const { currentUser } = useContext(UserContext)
+    const { display } = useContext(CardDisplayContext)
     return (
         <Fragment>
             <div className='navigation'>
@@ -13,9 +20,15 @@ function NavBar() {
                 <div className='nav-links-container'>
                     <Link to='/' className='nav-link'>HOME</Link>
                     <Link to='/shop' className='nav-link'>SHOP</Link>
-                    <Link to='/sign-in' className='nav-link'>SIGN IN</Link>
-                    <Link to='/cart' className='nav-link'>CART</Link>
+                    {
+                        currentUser ?
+                            <span className='nav-link' onClick={signOutUser}>SIGN OUT</span>
+                            :
+                            <Link to='/sign-in' className='nav-link'>SIGN IN</Link>
+                    }
+                    <CardIcon />
                 </div>
+                {display && <CardDropDown />}
             </div>
             <Outlet />
         </Fragment>

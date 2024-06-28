@@ -1,6 +1,6 @@
 import './sign-up-form.styles.scss'
 import React from 'react'
-import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase.utils'
+import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.components'
 
@@ -32,8 +32,6 @@ function SignUpForm() {
         }
         try {
             const { user } = await createAuthUserWithEmailAndPassword(email, password)
-            console.log("user")
-            console.log(user)
             await createUserDocumentFromAuth(user, { displayName })
             resetFormFields()
         } catch (err) {
