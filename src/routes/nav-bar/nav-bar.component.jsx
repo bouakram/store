@@ -6,11 +6,11 @@ import { UserContext } from '../../contexts/user.context'
 import { signOutUser } from '../../utils/firebase/firebase.utils'
 import CardIcon from '../../components/card-icon/card-icon.component'
 import CardDropDown from '../../components/card-drop-down/card-drop-down.component'
-import { CardDisplayContext } from '../../contexts/card-display.context'
+import { cardContext } from '../../contexts/card-display.context'
 
 function NavBar() {
     const { currentUser } = useContext(UserContext)
-    const { display } = useContext(CardDisplayContext)
+    const { display } = useContext(cardContext)
     return (
         <Fragment>
             <div className='navigation'>
