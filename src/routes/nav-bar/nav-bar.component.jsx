@@ -1,35 +1,36 @@
-import './nav-bar.styles.scss'
+// import './nav-bar.styles.jsx'
 import React, { Fragment, useContext } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { ReactComponent as ShopLogo } from '../../assets/retail-shop-icon.svg'
 import { UserContext } from '../../contexts/user.context'
 import { signOutUser } from '../../utils/firebase/firebase.utils'
 import CardIcon from '../../components/card-icon/card-icon.component'
 import CardDropDown from '../../components/card-drop-down/card-drop-down.component'
 import { cardContext } from '../../contexts/card-display.context'
+import { NavigationComponent, LogoContainer, NavLinks, NavLink } from './nav-bar.styles.jsx'
 
 function NavBar() {
     const { currentUser } = useContext(UserContext)
     const { display } = useContext(cardContext)
     return (
         <Fragment>
-            <div className='navigation'>
-                <Link to='/' className='logo-container'>
+            <NavigationComponent >
+                <LogoContainer to='/' >
                     <ShopLogo className='logo-svg' />
-                </Link>
-                <div className='nav-links-container'>
-                    <Link to='/' className='nav-link'>HOME</Link>
-                    <Link to='/shop' className='nav-link'>SHOP</Link>
+                </LogoContainer>
+                <NavLinks >
+                    <NavLink to='/' >HOME</NavLink>
+                    <NavLink to='/shop' >SHOP</NavLink>
                     {
                         currentUser ?
-                            <span className='nav-link' onClick={signOutUser}>SIGN OUT</span>
+                            <NavLink as='span' onClick={signOutUser}>SIGN OUT</NavLink>
                             :
-                            <Link to='/sign-in' className='nav-link'>SIGN IN</Link>
+                            <NavLink to='/sign-in' >SIGN IN</NavLink>
                     }
                     <CardIcon />
-                </div>
+                </NavLinks>
                 {display && <CardDropDown />}
-            </div>
+            </NavigationComponent>
             <Outlet />
         </Fragment>
     )

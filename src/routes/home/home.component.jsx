@@ -1,4 +1,4 @@
-import Categories from "../../components/categories/categories.component";
+import Directory from "../../components/directory/directory.component";
 
 function Home() {
 
@@ -31,7 +31,7 @@ function Home() {
     ]
 
     return (
-        <Categories categoriesList={categories} />
+        <Directory categoriesList={categories} />
     );
 }
 

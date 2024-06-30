@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import './checkout-item.styles.scss'
 import { cardContext } from '../../contexts/card-display.context'
+import { Arrow, CheckoutItemContainer, ImageContainer, Name, Price, Quantity, RemoveButton } from './checkout-item.styles.jsx'
 
 function CheckoutItem({ Product }) {
     const { setItemToCard, decreaseItemQuantity, removeItemFromCard } = useContext(cardContext)
@@ -14,19 +14,19 @@ function CheckoutItem({ Product }) {
         removeItemFromCard(Product)
     }
     return (
-        <div className='checkout-item-container'>
-            <div className="image-container">
+        <CheckoutItemContainer>
+            <ImageContainer>
                 <img src={Product.imageUrl} alt={Product.name} />
-            </div>
-            <span className='name'>{Product.name}</span>
-            <span className='quantity'>
-                <div className='arrow' onClick={handleDecrease}>&#10094;</div>
+            </ImageContainer>
+            <Name>{Product.name}</Name>
+            <Quantity>
+                <Arrow onClick={handleDecrease}>&#10094;</Arrow>
                 {Product.quantity}
-                <div className='arrow' onClick={handleIncrease}>&#10095;</div>
-            </span>
-            <span className='price'>{Product.price}</span>
-            <dib className='remove-button' onClick={handleDeleteItem}>&#10005;</dib>
-        </div>
+                <Arrow onClick={handleIncrease}>&#10095;</Arrow>
+            </Quantity>
+            <Price className='price'>{Product.price}$</Price>
+            <RemoveButton onClick={handleDeleteItem}>&#10005;</RemoveButton>
+        </CheckoutItemContainer>
     )
 }
 
