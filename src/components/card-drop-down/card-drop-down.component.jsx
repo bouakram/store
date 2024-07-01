@@ -1,9 +1,9 @@
 import Button from '../button/button.components'
 import CartItem from '../card-item/cart-item.component'
 import { useContext } from 'react'
-import { cardContext } from '../../contexts/card-display.context'
 import { useNavigate } from 'react-router-dom'
 import { CartDropdownContainer, CartItems, EmptyMessage } from './card-drop-down.styles.jsx'
+import { cardContext } from '../../contexts/card.context.jsx'
 
 function CardDropDown() {
     const { cardItems } = useContext(cardContext)

@@ -6,7 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import UserContextProvider from './contexts/user.context'
 import CategoriesContextProvider from './contexts/categories.context';
-import CardDisplayProvider from './contexts/card-display.context';
+import CardDisplayProvider from './contexts/card.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

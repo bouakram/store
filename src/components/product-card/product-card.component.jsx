@@ -1,12 +1,14 @@
 import { useContext } from 'react'
 import { BUTTON_TYPE_CLASSES } from '../button/button.components'
 import './product-card.styles.jsx'
-import { cardContext } from '../../contexts/card-display.context'
 import { Button, Footer, Image, Name, Price, ProductCardContainer } from './product-card.styles.jsx'
+import { cardContext } from '../../contexts/card.context.jsx'
 
 function ProductCard({ product }) {
     const { setItemToCard } = useContext(cardContext)
-    const addProductToCard = () => setItemToCard(product)
+    const addProductToCard = () => {
+        setItemToCard(product)
+    }
     return (
         <ProductCardContainer>
             <Image src={product.imageUrl} alt={product.name} />

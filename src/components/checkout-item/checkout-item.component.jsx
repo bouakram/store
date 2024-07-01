@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { cardContext } from '../../contexts/card-display.context'
 import { Arrow, CheckoutItemContainer, ImageContainer, Name, Price, Quantity, RemoveButton } from './checkout-item.styles.jsx'
+import { cardContext } from '../../contexts/card.context.jsx'
 
 function CheckoutItem({ Product }) {
     const { setItemToCard, decreaseItemQuantity, removeItemFromCard } = useContext(cardContext)

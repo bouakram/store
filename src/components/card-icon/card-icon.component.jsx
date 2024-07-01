@@ -1,6 +1,7 @@
+import { cardContext } from '../../contexts/card.context.jsx'
 import { CartIconContainer, ItemCount, ShoppingCartIcon } from './card-icon.styles.jsx'
 import { useContext } from 'react'
-import { cardContext } from '../../contexts/card-display.context'
+
 
 function CardIcon() {
     const { display, setDisplay, cardItems } = useContext(cardContext)
@@ -8,7 +9,7 @@ function CardIcon() {
     return (
         <CartIconContainer onClick={handleDisplay}>
             <ShoppingCartIcon />
-            <ItemCount as='span'>{cardItems.length}</ItemCount>
+            <ItemCount as='span'>{cardItems?.length}</ItemCount>
         </CartIconContainer>
     )
 }

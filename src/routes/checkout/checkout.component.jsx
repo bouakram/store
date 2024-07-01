@@ -1,7 +1,7 @@
 import { useContext } from 'react'
-import { cardContext } from '../../contexts/card-display.context'
 import CheckoutItem from '../../components/checkout-item/checkout-item.component'
 import { CheckoutContainer, CheckoutHeader, HeaderBlock, Total } from './checkout.styles'
+import { cardContext } from '../../contexts/card.context'
 
 function Checkout() {
     const { cardItems, total } = useContext(cardContext)
