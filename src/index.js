@@ -4,21 +4,28 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import UserContextProvider from './contexts/user.context'
-import CategoriesContextProvider from './contexts/categories.context';
-import CardDisplayProvider from './contexts/card.context';
+import { Provider } from 'react-redux';
+import { persistor, store } from './store/store';
+import { PersistGate } from 'redux-persist/integration/react';
+// import UserContextProvider from './contexts/user.context'
+// import CategoriesContextProvider from './contexts/categories.context';
+// import CardDisplayProvider from './contexts/card.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <UserContextProvider>
+      {/* <UserContextProvider>
         <CategoriesContextProvider>
-          <CardDisplayProvider>
-            <App />
-          </CardDisplayProvider>
+          <CardDisplayProvider> */}
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
+      {/* </CardDisplayProvider>
         </CategoriesContextProvider>
-      </UserContextProvider>
+      </UserContextProvider> */}
     </BrowserRouter>
   </React.StrictMode>
 );

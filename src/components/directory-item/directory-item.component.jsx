@@ -9,7 +9,7 @@ function DirectoryItem({ category, route }) {
     }
     return (
         <DirectoryItemComponent onClick={() => navigateHandler(category.route)}>
-            <BackgroundImage imageUrl={category.img} />
+            <BackgroundImage imageurl={category.img} />
             <Body>
                 <h2>{category.title}</h2>
                 <p>Shop now</p>

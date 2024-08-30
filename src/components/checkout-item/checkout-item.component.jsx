@@ -1,17 +1,23 @@
-import { useContext } from 'react'
+// import { useContext } from 'react'
 import { Arrow, CheckoutItemContainer, ImageContainer, Name, Price, Quantity, RemoveButton } from './checkout-item.styles.jsx'
-import { cardContext } from '../../contexts/card.context.jsx'
+// import { cardContext } from '../../contexts/card.context.jsx'
+import { decreaseItemQuantity, removeItemFromCard, setItemToCard } from '../../store/cart/cart.action.js'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCardItems } from '../../store/cart/cart.selector.js'
 
 function CheckoutItem({ Product }) {
-    const { setItemToCard, decreaseItemQuantity, removeItemFromCard } = useContext(cardContext)
+    // const { setItemToCard, decreaseItemQuantity, removeItemFromCard } = useContext(cardContext)
+    const dispatch = useDispatch()
+    const cardItems = useSelector(selectCardItems)
+
     const handleIncrease = () => {
-        setItemToCard(Product)
+        dispatch(setItemToCard(cardItems, Product))
     }
     const handleDecrease = () => {
-        decreaseItemQuantity(Product)
+        dispatch(decreaseItemQuantity(cardItems, Product))
     }
     const handleDeleteItem = () => {
-        removeItemFromCard(Product)
+        dispatch(removeItemFromCard(cardItems, Product))
     }
     return (
         <CheckoutItemContainer>
