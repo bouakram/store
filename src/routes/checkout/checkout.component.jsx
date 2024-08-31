@@ -4,6 +4,7 @@ import { CheckoutContainer, CheckoutHeader, HeaderBlock, Total } from './checkou
 // import { cardContext } from '../../contexts/card.context'
 import { selectCardItems, selectCartTotal } from '../../store/cart/cart.selector'
 import { useSelector } from 'react-redux'
+import PaymentForm from '../../components/payment-form/payment-form.component'
 
 function Checkout() {
     // const { cardItems, total } = useContext(cardContext)
@@ -32,6 +33,7 @@ function Checkout() {
                 <CheckoutItem key={item.id} Product={item} />
             ))}
             <Total>Total = {total}$</Total>
+            <PaymentForm />
         </CheckoutContainer>
     )
 }

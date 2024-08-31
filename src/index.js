@@ -7,6 +7,8 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { persistor, store } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { Elements } from '@stripe/react-stripe-js';
+import { stripePromise } from './utils/stripe/stripe.utils'
 // import UserContextProvider from './contexts/user.context'
 // import CategoriesContextProvider from './contexts/categories.context';
 // import CardDisplayProvider from './contexts/card.context';
@@ -20,7 +22,9 @@ root.render(
           <CardDisplayProvider> */}
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <App />
+          <Elements stripe={stripePromise}>
+            <App />
+          </Elements>
         </PersistGate>
       </Provider>
       {/* </CardDisplayProvider>
