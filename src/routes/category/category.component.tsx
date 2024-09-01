@@ -11,14 +11,19 @@ import { CategoryContainer } from './category.styles.jsx'
 import { categoriesSelector, selectIsCategoriesLoading } from '../../store/categories/category.selector.js'
 import { useSelector } from 'react-redux'
 import Spinner from '../../components/spinner/spinner.component.jsx'
+import { CategoryItem } from '../../store/categories/category.types'
+
+type CategoryRouteParams = {
+    category: string;
+}
 
 function Category() {
-    const { category } = useParams()
+    const { category } = useParams<keyof CategoryRouteParams>() as CategoryRouteParams
     // const { categoriesMap } = useContext(CategoriesContext)
     const categories = useSelector(categoriesSelector)
     const isLoading = useSelector(selectIsCategoriesLoading)
 
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState<CategoryItem[]>([])
 
     useEffect(() => {
         setProducts(categories[category])

@@ -10,6 +10,7 @@ import { NavigationComponent, LogoContainer, NavLinks, NavLink } from './nav-bar
 import { useDispatch, useSelector } from 'react-redux'
 import { selectIsCartOpen } from '../../store/cart/cart.selector.js'
 import { signOutStart } from '../../store/user/user.action.js'
+import { selectCurrentUser } from '../../store/user/user.selector'
 // import { cardContext } from '../../contexts/card.context.jsx'
 
 function NavBar() {
@@ -18,7 +19,7 @@ function NavBar() {
     const dispatch = useDispatch()
     const display = useSelector(selectIsCartOpen)
 
-    const { currentUser } = useSelector(state => state.user)
+    const currentUser = useSelector(selectCurrentUser)
     const signOutUser = () => {
         dispatch(signOutStart())
     }
@@ -33,7 +34,7 @@ function NavBar() {
                     <NavLink to='/shop' >SHOP</NavLink>
                     {
                         currentUser ?
-                            <NavLink as='span' onClick={signOutUser}>SIGN OUT</NavLink>
+                            <NavLink to={''} as='span' onClick={signOutUser}>SIGN OUT</NavLink>
                             :
                             <NavLink to='/sign-in' >SIGN IN</NavLink>
                     }

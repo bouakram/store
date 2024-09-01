@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent, FormEvent } from 'react'
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.components'
 import FormInput from '../form-input/form-input.component'
 // import { signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils'
@@ -6,6 +6,7 @@ import { ButtonsContainer, SignInContainer } from './sin-in-form.styles'
 import { useDispatch } from 'react-redux'
 import { googleSignInStart } from '../../store/user/user.action'
 import { onEmailSignInStart } from '../../store/user/user.saga'
+import { AuthError, AuthErrorCodes } from 'firebase/auth'
 
 const defaultFormField = {
     email: '',
@@ -19,7 +20,7 @@ function SignInForm() {
 
     const resetFormFields = () => setFormField(defaultFormField)
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         setFormField({ ...formField, [name]: value })
     }
@@ -29,15 +30,15 @@ function SignInForm() {
         dispatch(googleSignInStart(email, password))
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         try {
             // await signInAuthUserWithEmailAndPassword(email, password)
-            dispatch(onEmailSignInStart())
+            dispatch(onEmailSignInStart() as any)
             resetFormFields()
         } catch (err) {
-            if (err.code === 'auth/invalid-credential') {
+            if ((err as AuthError).code === AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
                 alert('invalid credentials')
                 return
             }

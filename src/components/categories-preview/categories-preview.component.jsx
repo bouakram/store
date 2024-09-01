@@ -4,7 +4,7 @@ import {
 } from 'react'
 // import ProductCard from '../../components/product-card/product-card.component'
 // import { CategoriesContext } from '../../contexts/categories.context'
-import CategoryPreview from '../../components/category-preview/category-preview.component'
+import CategoryPreview from '../category-preview/category-preview.component'
 import { useSelector } from 'react-redux'
 import { categoriesSelector, selectIsCategoriesLoading } from '../../store/categories/category.selector'
 import Spinner from '../spinner/spinner.component'

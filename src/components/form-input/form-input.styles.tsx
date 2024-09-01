@@ -1,5 +1,9 @@
 import styled, { css } from 'styled-components'
 
+type FormInputLabelProps = {
+    shrink?: boolean
+}
+
 const subColor = 'gray'
 const mainColor = 'black'
 
@@ -9,7 +13,7 @@ font-size: 12px;
 color: ${mainColor}; 
 `
 
-export const FormInputLabel = styled.label`
+export const FormInputLabel = styled.label<FormInputLabelProps>`
 color: ${subColor}; 
 font-size: 16px; 
 font-weight: normal; 

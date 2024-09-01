@@ -4,33 +4,39 @@ import { Arrow, CheckoutItemContainer, ImageContainer, Name, Price, Quantity, Re
 import { decreaseItemQuantity, removeItemFromCard, setItemToCard } from '../../store/cart/cart.action.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCardItems } from '../../store/cart/cart.selector.js'
+import { CartItem } from '../../store/cart/cart.type.js'
+import { FC } from 'react'
 
-function CheckoutItem({ Product }) {
+export type CheckoutItemProps = {
+    product: CartItem
+}
+
+const CheckoutItem: FC<CheckoutItemProps> = ({ product }) => {
     // const { setItemToCard, decreaseItemQuantity, removeItemFromCard } = useContext(cardContext)
     const dispatch = useDispatch()
     const cardItems = useSelector(selectCardItems)
 
     const handleIncrease = () => {
-        dispatch(setItemToCard(cardItems, Product))
+        dispatch(setItemToCard(cardItems, product))
     }
     const handleDecrease = () => {
-        dispatch(decreaseItemQuantity(cardItems, Product))
+        dispatch(decreaseItemQuantity(cardItems, product))
     }
     const handleDeleteItem = () => {
-        dispatch(removeItemFromCard(cardItems, Product))
+        dispatch(removeItemFromCard(cardItems, product))
     }
     return (
         <CheckoutItemContainer>
             <ImageContainer>
-                <img src={Product.imageUrl} alt={Product.name} />
+                <img src={product.imageUrl} alt={product.name} />
             </ImageContainer>
-            <Name>{Product.name}</Name>
+            <Name>{product.name}</Name>
             <Quantity>
                 <Arrow onClick={handleDecrease}>&#10094;</Arrow>
-                {Product.quantity}
+                {product.quantity}
                 <Arrow onClick={handleIncrease}>&#10095;</Arrow>
             </Quantity>
-            <Price className='price'>{Product.price}$</Price>
+            <Price className='price'>{product.price}$</Price>
             <RemoveButton onClick={handleDeleteItem}>&#10005;</RemoveButton>
         </CheckoutItemContainer>
     )

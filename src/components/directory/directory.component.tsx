@@ -2,7 +2,14 @@
 import DirectoryItem from '../directory-item/directory-item.component'
 import { DirectoryContainer } from './directory.styles.jsx'
 
-const categories = [
+export type CategoryType = {
+    id: number;
+    img: string;
+    title: string;
+    route: string;
+}
+
+const categories: CategoryType[] = [
     {
         id: 1,
         img: "https://static01.nyt.com/images/2023/10/15/fashion/09LITERARY-HARTS-kczw/09LITERARY-HARTS-kczw-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
